@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, ChangeEvent, useEffect } from 'react';
+import { useRef, useState, ChangeEvent } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 
 import { Button } from "@/components/ui/button";
@@ -15,17 +15,16 @@ interface SignatureModalProps {
 }
 
 const fontStyles = [
-  { name: 'Dancing Script', class: 'font-dancing-script', family: 'Dancing Script' },
-  { name: 'Pacifico', class: 'font-pacifico', family: 'Pacifico' },
-  { name: 'Caveat', class: 'font-caveat', family: 'Caveat' },
-  { name: 'Great Vibes', class: 'font-great-vibes', family: 'Great Vibes' },
+  { name: 'Dancing Script', class: 'font-dancing-script' },
+  { name: 'Pacifico', class: 'font-pacifico' },
+  { name: 'Caveat', class: 'font-caveat' },
+  { name: 'Great Vibes', class: 'font-great-vibes' },
 ];
 
 export function SignatureModal({ isOpen, onClose, onSave }: SignatureModalProps) {
   const sigCanvas = useRef<SignatureCanvas>(null);
   const [typedName, setTypedName] = useState('');
   const [activeTab, setActiveTab] = useState('draw');
-  
 
   const clearSignature = () => {
     sigCanvas.current?.clear();
@@ -52,7 +51,7 @@ export function SignatureModal({ isOpen, onClose, onSave }: SignatureModalProps)
       ctx.fillStyle = "white"; 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "black";
-      ctx.font = `50px ${fontFamily}`; 
+      ctx.font = `50px ${fontFamily}`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(typedName || 'Signature', canvas.width / 2, canvas.height / 2);
@@ -118,7 +117,7 @@ export function SignatureModal({ isOpen, onClose, onSave }: SignatureModalProps)
             />
             <div className="grid grid-cols-2 gap-4">
               {fontStyles.map(font => (
-                <div key={font.name} onClick={() => generateSignatureFromText(font.family)} className="border rounded-md p-4 text-center cursor-pointer hover:bg-accent transition-colors">
+                <div key={font.name} onClick={() => generateSignatureFromText(font.name)} className="border rounded-md p-4 text-center cursor-pointer hover:bg-accent transition-colors">
                   <p className={`text-3xl ${font.class}`}>{typedName || 'Signature'}</p>
                 </div>
               ))}

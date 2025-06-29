@@ -1,3 +1,5 @@
+// src/components/attestation/AttestationDocument.tsx
+
 import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer';
 import { TAttestationSchema } from '@/lib/validators';
 import { format } from 'date-fns';
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingTop: 30,
     paddingHorizontal: 40,
-    paddingBottom: 60, // Laisse de la place pour le footer
+    paddingBottom: 60,
     fontFamily: 'Helvetica',
     fontSize: 11,
     lineHeight: 1.5,
@@ -39,24 +41,23 @@ const styles = StyleSheet.create({
   bold: {
     fontFamily: 'Helvetica-Bold',
   },
-  // NOUVEAUX STYLES pour l'alignement
   signatureSection: {
     marginTop: 50,
-    flexDirection: 'row', // On met les éléments côte à côte
-    justifyContent: 'space-between', // On les espace au maximum
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
   signatureLeft: {
-    width: '50%', // Colonne de gauche
+    width: '50%',
   },
   signatureRight: {
-    width: '40%', // Colonne de droite
+    width: '40%',
     textAlign: 'center',
   },
   signatureImage: {
     width: 120,
     height: 60,
-    alignSelf: 'center', // Centre l'image dans sa colonne
+    alignSelf: 'center',
     marginTop: 5
   },
   footer: {
@@ -80,10 +81,10 @@ interface AttestationDocumentProps {
 export const AttestationDocument = ({ data }: AttestationDocumentProps) => (
   <Document
     title={`Attestation_Hebergement_${data.hostedLastName}`}
-    author={data.hostFirstName + ' ' + data.hostLastName}
+    author={`${data.hostFirstName} ${data.hostLastName}`}
   >
     <Page size="A4" style={styles.page}>
-      <Text style={styles.title}>Attestation d'Hébergement</Text>
+      <Text style={styles.title}>ATTESTATION D'HÉBERGEMENT</Text>
 
       <View style={styles.section}>
         <Text style={styles.text}>Je soussigné(e),</Text>
@@ -107,6 +108,7 @@ export const AttestationDocument = ({ data }: AttestationDocumentProps) => (
           <Text style={styles.text}>Fait à {data.attestationPlace},</Text>
           <Text style={styles.text}>Le {format(data.attestationDate, 'dd MMMM yyyy', { locale: fr })}.</Text>
           <Text style={[styles.text, { marginTop: 10 }]}>Signature de l'hébergeant(e) :</Text>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <Image style={styles.signatureImage} src={data.signatureDataUrl} />
         </View>
       </View>
