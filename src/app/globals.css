@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+.font-dancing-script {
+  font-family: 'Dancing Script', cursive;
+}
+.font-pacifico {
+  font-family: 'Pacifico', cursive;
+}
+.font-caveat {
+  font-family: 'Caveat', cursive;
+}
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
+}
