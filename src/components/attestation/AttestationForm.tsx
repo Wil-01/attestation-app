@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { useForm, ControllerRenderProps } from 'react-hook-form'; // Ajout de ControllerRenderProps
+import { useForm, ControllerRenderProps, FieldPath } from 'react-hook-form'; 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -28,7 +28,13 @@ const DynamicPdfActions = dynamic(
   }
 );
 
-const DatePickerField = ({ field, label }: { field: ControllerRenderProps<TAttestationSchema, any>, label: string }) => (
+const DatePickerField = <T extends FieldPath<TAttestationSchema>>({
+  field,
+  label,
+}: {
+  field: ControllerRenderProps<TAttestationSchema, T>;
+  label: string;
+}) => (
   <FormItem className="flex flex-col">
     <FormLabel>{label}</FormLabel>
     <Popover>
@@ -42,7 +48,7 @@ const DatePickerField = ({ field, label }: { field: ControllerRenderProps<TAttes
             )}
           >
             {field.value ? (
-              format(field.value, "PPP", { locale: fr })
+              format(field.value as Date, "PPP", { locale: fr })
             ) : (
               <span>Choisissez une date</span>
             )}
@@ -53,7 +59,7 @@ const DatePickerField = ({ field, label }: { field: ControllerRenderProps<TAttes
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={field.value}
+          selected={field.value as Date}
           onSelect={field.onChange}
           disabled={(date) =>
             date > new Date() || date < new Date("1900-01-01")
