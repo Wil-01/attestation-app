@@ -22,7 +22,7 @@ const fontStyles = [
 ];
 
 export function SignatureModal({ isOpen, onClose, onSave }: SignatureModalProps) {
-  const sigCanvas = useRef<SignatureCanvas>(null);
+  const sigCanvas = useRef<InstanceType<typeof SignatureCanvas> | null>(null);
   const [typedName, setTypedName] = useState('');
   const [activeTab, setActiveTab] = useState('draw');
 
