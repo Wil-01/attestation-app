@@ -28,7 +28,6 @@ const DynamicPdfActions = dynamic(
   }
 );
 
-// Correction du type 'any'
 const DatePickerField = ({ field, label }: { field: ControllerRenderProps<TAttestationSchema, any>, label: string }) => (
   <FormItem className="flex flex-col">
     <FormLabel>{label}</FormLabel>
@@ -107,7 +106,7 @@ export function AttestationForm() {
   return (
     <div className="border p-4 sm:p-6 md:p-8 rounded-lg shadow-md bg-white">
       <div className="bg-blue-800 text-white text-center py-4 rounded-t-lg -m-4 sm:-m-6 md:-m-8 mb-6">
-        <h1 className="text-xl md:text-2xl font-bold">Attestation d'hébergement</h1>
+        <h1 className="text-xl md:text-2xl font-bold">Attestation d&apos;hébergement</h1>
       </div>
       
       <Form {...form}>
@@ -129,7 +128,7 @@ export function AttestationForm() {
           <FormField name="hostAddress" render={({ field }) => ( <FormItem><FormLabel>Demeurant au</FormLabel><FormControl><Input placeholder="Adresse ligne 1" {...field} /></FormControl><FormMessage /></FormItem> )}/>
           <FormField name="hostAddressLine2" render={({ field }) => ( <FormItem><FormControl><Input placeholder="Adresse ligne 2 (optionnel)" {...field} /></FormControl><FormMessage /></FormItem> )}/>
           
-          <p className="pt-4 text-gray-600">Certifie sur l'honneur héberger à mon domicile ci-dessus mentionné :</p>
+          <p className="pt-4 text-gray-600">Certifie sur l&apos;honneur héberger à mon domicile ci-dessus mentionné :</p>
           
           <FormField name="hostedGender" render={({ field }) => ( <FormItem className="space-y-2"><FormControl><RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex items-center space-x-4"><FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="Madame" /></FormControl><FormLabel className="font-normal">Madame</FormLabel></FormItem><FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="Monsieur" /></FormControl><FormLabel className="font-normal">Monsieur</FormLabel></FormItem></RadioGroup></FormControl><FormMessage /></FormItem> )}/>
 
@@ -151,7 +150,7 @@ export function AttestationForm() {
           </div>
           
           <div>
-            <FormLabel>Signature de l'hébergeant(e)</FormLabel>
+            <FormLabel>Signature de l&apos;hébergeant(e)</FormLabel>
             <div className="mt-2">
               {signatureValue ? ( <div className="border rounded-md p-2 h-24 w-48 relative bg-gray-50"><Image src={signatureValue} alt="Signature de l'hébergeur" layout="fill" objectFit="contain" /></div> ) : null}
               <Button type="button" variant="outline" onClick={() => setIsModalOpen(true)} className="mt-2" >
@@ -164,13 +163,13 @@ export function AttestationForm() {
           <div className="bg-blue-50 p-4 rounded-lg mt-8 space-y-2">
             <p className="font-bold text-blue-800">JOINDRE :</p>
             <ul className="list-disc list-inside text-sm">
-              <li>Un justificatif d’identité de l'hébergeant(e)</li>
-              <li>Un justificatif de domicile de l'hébergeant(e)</li>
+              <li>Un justificatif d’identité de l&apos;hébergeant(e)</li>
+              <li>Un justificatif de domicile de l&apos;hébergeant(e)</li>
             </ul>
           </div>
 
           <div className="border-t pt-8 mt-8">
-            {!formData ? ( <Button type="submit" className="w-full" size="lg">Générer l'aperçu du PDF</Button> ) : ( <DynamicPdfActions formData={formData} /> )}
+            {!formData ? ( <Button type="submit" className="w-full" size="lg">Générer l&apos;aperçu du PDF</Button> ) : ( <DynamicPdfActions formData={formData} /> )}
           </div>
         </form>
       </Form>
@@ -179,7 +178,7 @@ export function AttestationForm() {
 
       <div className="border border-yellow-500 bg-yellow-50 text-xs p-3 rounded-lg mt-8">
         <p className="font-bold">Article 441-1 Code Pénal</p>
-        <p>Constitue un faux toute altération frauduleuse de la vérité, de nature à causer un préjudice et accomplie par quelque moyen que ce soit, dans un écrit ou tout autre support d'expression de la pensée, qui a pour objet ou qui peut avoir pour effet d'établir la preuve d'un droit ou d'un fait ayant des conséquences juridiques. Le faux et l'usage de faux sont punis de trois ans d'emprisonnement et de 45000 € d'amende.</p>
+        <p>Constitue un faux toute altération frauduleuse de la vérité, de nature à causer un préjudice et accomplie par quelque moyen que ce soit, dans un écrit ou tout autre support d&apos;expression de la pensée, qui a pour objet ou qui peut avoir pour effet d&apos;établir la preuve d&apos;un droit ou d&apos;un fait ayant des conséquences juridiques. Le faux et l&apos;usage de faux sont punis de trois ans d&apos;emprisonnement et de 45000 € d&apos;amende.</p>
       </div>
     </div>
   );
